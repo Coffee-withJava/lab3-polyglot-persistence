@@ -1,4 +1,4 @@
-package br.workshop.lab3.shoppingcart;
+package br.workshop.lab3.nosql.shoppingcart;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 

@@ -1,4 +1,4 @@
-package br.workshop.lab3.product;
+package br.workshop.lab3.nosql.product;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;

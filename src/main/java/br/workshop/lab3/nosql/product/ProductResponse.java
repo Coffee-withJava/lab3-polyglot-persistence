@@ -1,4 +1,4 @@
-package br.workshop.lab3.product;
+package br.workshop.lab3.nosql.product;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
