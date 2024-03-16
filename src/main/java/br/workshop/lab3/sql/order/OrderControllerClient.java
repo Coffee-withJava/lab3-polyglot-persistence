@@ -1,7 +1,5 @@
-package br.workshop.lab3.sql.controller;
+package br.workshop.lab3.sql.order;
 
-import br.workshop.lab3.sql.dto.ItemDTO;
-import br.workshop.lab3.sql.dto.OrderDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;

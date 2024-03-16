@@ -1,4 +1,4 @@
-package br.workshop.lab3.sql.dto;
+package br.workshop.lab3.sql.customer;
 
 public class CustomerDTO {
     private Long id;

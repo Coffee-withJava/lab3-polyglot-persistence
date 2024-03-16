@@ -1,6 +1,5 @@
-package br.workshop.lab3.sql.controller;
+package br.workshop.lab3.sql.customer;
 
-import br.workshop.lab3.sql.dto.CustomerDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
@@ -16,7 +15,7 @@ public interface CustomerResourceClient {
 
     @GET
     @Path("/{id}")
-    CustomerDTO get(@PathParam("id") String id);
+    CustomerDTO get(@PathParam("id") Long id);
 
 
 }

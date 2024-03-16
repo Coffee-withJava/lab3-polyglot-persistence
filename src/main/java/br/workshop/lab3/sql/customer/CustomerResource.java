@@ -1,6 +1,5 @@
-package br.workshop.lab3.sql.controller;
+package br.workshop.lab3.sql.customer;
 
-import br.workshop.lab3.sql.dto.CustomerDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -23,7 +22,7 @@ public class CustomerResource {
 
     @GET
     @Path("/{id}")
-    public CustomerDTO get(@PathParam("id") String id){
+    public CustomerDTO get(@PathParam("id") Long id){
         return client.get(id);
     }
 }
