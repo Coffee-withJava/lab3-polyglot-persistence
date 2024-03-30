@@ -1,6 +1,6 @@
 package br.workshop.lab3.sql.customer;
 
-public class CustomerDTO {
+public class CustomerRequest {
     private Long id;
 
     private String name;

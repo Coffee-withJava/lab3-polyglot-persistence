@@ -19,7 +19,7 @@ import java.util.List;
 @Path("/products")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
-public interface ProductResourcesClient {
+public interface Products {
 
     @POST
     ProductResponse add(ProductRequest request);

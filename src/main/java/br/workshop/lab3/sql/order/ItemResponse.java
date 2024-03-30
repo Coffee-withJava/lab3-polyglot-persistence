@@ -1,31 +1,25 @@
 package br.workshop.lab3.sql.order;
 
-public class ItemDTO {
+import java.math.BigDecimal;
+
+public class ItemResponse {
     private String productId;
     private Integer quantity;
-    private String price;
-
-    private Long orderId;
+    private BigDecimal price;
+    private BigDecimal total;
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public Long getOrderId() {
-        return orderId;
+    public ItemResponse() {
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
-    public ItemDTO() {
-    }
-
-    public ItemDTO(String productId, int quantity, String price) {
+    public ItemResponse(String productId, int quantity, BigDecimal price, BigDecimal total) {
         this.productId = productId;
         this.quantity = quantity;
         this.price = price;
+        this.total = total;
     }
 
     public String getProductId() {
@@ -44,17 +38,25 @@ public class ItemDTO {
         this.quantity = quantity;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     @Override
     public String toString() {
-        return "OrderItemDTO{" +
+        return "SavedItemDTO{" +
                 "productId='" + productId + '\'' +
                 ", quantity=" + quantity +
                 ", price='" + price + '\'' +

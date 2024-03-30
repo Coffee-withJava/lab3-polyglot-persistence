@@ -1,13 +1,19 @@
 package br.workshop.lab3.polyglot;
 
-import br.workshop.lab3.nosql.product.ProductResourcesClient;
-import br.workshop.lab3.nosql.shoppingcart.ShoppingCartsResourcesClient;
-import br.workshop.lab3.sql.customer.CustomerResourceClient;
-import br.workshop.lab3.sql.order.OrderControllerClient;
+import br.workshop.lab3.nosql.product.Products;
+import br.workshop.lab3.nosql.shoppingcart.ShoppingCarts;
+import br.workshop.lab3.sql.customer.Customers;
+import br.workshop.lab3.sql.order.ItemRequest;
+import br.workshop.lab3.sql.order.Orders;
+import br.workshop.lab3.sql.order.OrderRequest;
+import br.workshop.lab3.sql.order.OrderResponse;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -19,24 +25,49 @@ public class OrderResources {
 
     @Inject
     @RestClient
-    ProductResourcesClient products;
+    Products products;
 
     @Inject
     @RestClient
-    ShoppingCartsResourcesClient shoppingCarts;
+    ShoppingCarts shoppingCarts;
 
     @Inject
     @RestClient
-    CustomerResourceClient customers;
+    Customers customers;
 
     @Inject
     @RestClient
-    OrderControllerClient orders;
+    Orders orders;
+
+    @GET
+    @Path("/{id}")
+    public OrderResponse get(@PathParam("id") Long orderId) {
+        return orders.getOrder(orderId);
+    }
 
     @POST
-    public OrderResponse generateOrder(OrderRequest request) {
-        // TODO: implement me
-        throw new UnsupportedOperationException("implement me!");
+    public OrderResponse generateOrder(PaymentRequest request) {
+
+        customers.get(request.customerId());
+
+        var actualItems = shoppingCarts.getShoppingCart(request.customerId()).items();
+
+        if(actualItems.isEmpty())
+            throw new BadRequestException("shopping cart is empty");
+
+        var savedOrder = orders.saveOrder(
+                new OrderRequest(request.customerId(),
+                        request.paymentTransaction(),
+                        actualItems.stream()
+                                .map(item -> new ItemRequest(
+                                        item.productId(),
+                                        item.quantity(),
+                                        item.productPrice())).toList())
+        );
+
+        shoppingCarts.deleteShoppingCart(request.customerId());
+
+        return savedOrder;
     }
 
 }

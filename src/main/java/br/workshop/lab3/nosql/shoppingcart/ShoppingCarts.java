@@ -15,11 +15,11 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 @Path("/shopping-carts")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
-public interface ShoppingCartsResourcesClient {
+public interface ShoppingCarts {
 
     @GET
     @Path("{customerId}")
-    ShoppingCartResponse shoppingCart(@PathParam("customerId") @Positive Long customerId);
+    ShoppingCartResponse getShoppingCart(@PathParam("customerId") @Positive Long customerId);
 
     @DELETE
     @Path("{customerId}")

@@ -25,29 +25,29 @@ public class ProductResources {
 
     @Inject
     @RestClient
-    ProductResourcesClient client;
+    Products products;
 
     @POST
     public ProductResponse add(ProductRequest request) {
-        return client.add(request);
+        return products.add(request);
     }
 
     @PUT
     @Path("{id}")
     public ProductResponse update(@PathParam("id") String id, ProductRequest request) {
-        return client.update(id, request);
+        return products.update(id, request);
     }
 
     @GET
     @Path("{id}")
     public ProductResponse get(@PathParam("id") String id) {
-        return client.get(id);
+        return products.get(id);
     }
 
     @DELETE
     @Path("{id}")
     public void delete(@PathParam("id") String id) {
-        client.delete(id);
+        products.delete(id);
     }
 
     @GET
@@ -55,7 +55,7 @@ public class ProductResources {
                                          @QueryParam("page") @DefaultValue("1") Integer page,
                                          @QueryParam("size") @DefaultValue("10") Integer size) {
 
-        return client.listAll(name, page, size);
+        return products.listAll(name, page, size);
     }
 
 }

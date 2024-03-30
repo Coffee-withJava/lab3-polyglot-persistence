@@ -10,20 +10,19 @@ import java.util.List;
 @Path("/order")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
-public interface OrderControllerClient {
-
+public interface Orders {
     @GET
     @Path("/{id}")
-    Object getOrderService(@PathParam("id") Long id);
+    OrderResponse getOrder(@PathParam("id") Long id);
 
     @POST
-    @Path("/saveorder")
+    @Path("/saveOrder")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    List<Object> saveOrder(OrderDTO order);
+    OrderResponse saveOrder(OrderRequest order);
 
     @GET
     @Path("/{orderId}/items")
-    List<ItemDTO> getOrderItemsByOrderId(@PathParam("orderId") Long orderId);
+    List<ItemResponse> getOrderItemsByOrderId(@PathParam("orderId") Long orderId);
 
 }

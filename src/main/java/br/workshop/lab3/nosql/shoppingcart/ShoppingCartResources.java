@@ -1,6 +1,6 @@
 package br.workshop.lab3.nosql.shoppingcart;
 
-import br.workshop.lab3.sql.customer.CustomerResourceClient;
+import br.workshop.lab3.sql.customer.Customers;
 import jakarta.inject.Inject;
 import jakarta.validation.constraints.Positive;
 import jakarta.ws.rs.Consumes;
@@ -16,21 +16,21 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 @Path("/shopping-carts")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
-public class ShoppingCartsResources {
+public class ShoppingCartResources {
 
     @Inject
     @RestClient
-    ShoppingCartsResourcesClient client;
+    ShoppingCarts shoppingCarts;
 
     @Inject
     @RestClient
-    CustomerResourceClient customers;
+    Customers customers;
 
     @GET
     @Path("{customerId}")
     public ShoppingCartResponse shoppingCart(@PathParam("customerId") @Positive Long customerId) {
         customers.get(customerId);
-        return client.shoppingCart(customerId);
+        return shoppingCarts.getShoppingCart(customerId);
     }
 
     @POST
@@ -38,7 +38,7 @@ public class ShoppingCartsResources {
     public ShoppingCartResponse setItem(@PathParam("customerId") @Positive Long customerId,
                                         ItemShoppingCartRequest request) {
         customers.get(customerId);
-        return client.setItem(customerId, request);
+        return shoppingCarts.setItem(customerId, request);
     }
 
     @DELETE
@@ -46,7 +46,7 @@ public class ShoppingCartsResources {
     public ShoppingCartResponse removeItem(@PathParam("customerId") @Positive Long customerId,
                                            @PathParam("productId") String productId) {
         customers.get(customerId);
-        return client.removeItem(customerId, productId);
+        return shoppingCarts.removeItem(customerId, productId);
     }
 
 }

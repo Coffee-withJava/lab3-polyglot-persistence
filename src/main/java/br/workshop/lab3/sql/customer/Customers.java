@@ -8,14 +8,14 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 @Path("/customer")
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
-public interface CustomerResourceClient {
+public interface Customers {
 
     @POST
-    CustomerDTO create(CustomerDTO customer);
+    CustomerRequest create(CustomerRequest customer);
 
     @GET
     @Path("/{id}")
-    CustomerDTO get(@PathParam("id") Long id);
+    CustomerRequest get(@PathParam("id") Long id);
 
 
 }

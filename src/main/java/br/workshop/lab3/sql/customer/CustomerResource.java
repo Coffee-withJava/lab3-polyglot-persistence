@@ -13,16 +13,16 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 public class CustomerResource {
     @Inject
     @RestClient
-    CustomerResourceClient client;
+    Customers client;
 
     @POST
-    public CustomerDTO create(CustomerDTO customer){
+    public CustomerRequest create(CustomerRequest customer){
         return client.create(customer);
     }
 
     @GET
     @Path("/{id}")
-    public CustomerDTO get(@PathParam("id") Long id){
+    public CustomerRequest get(@PathParam("id") Long id){
         return client.get(id);
     }
 }

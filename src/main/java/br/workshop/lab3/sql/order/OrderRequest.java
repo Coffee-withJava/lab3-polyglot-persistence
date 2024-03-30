@@ -2,17 +2,17 @@ package br.workshop.lab3.sql.order;
 
 import java.util.List;
 
-public class OrderDTO {
+public class OrderRequest {
     private Long customerId;
     private String paymentTransaction;
-    private List<ItemDTO> items;
+    private List<ItemRequest> items;
 
     // Construtores, getters e setters
 
-    public OrderDTO() {
+    public OrderRequest() {
     }
 
-    public OrderDTO(Long customerId, String paymentTransaction, List<ItemDTO> items) {
+    public OrderRequest(Long customerId, String paymentTransaction, List<ItemRequest> items) {
         this.customerId = customerId;
         this.paymentTransaction = paymentTransaction;
         this.items = items;
@@ -34,11 +34,11 @@ public class OrderDTO {
         this.paymentTransaction = paymentTransaction;
     }
 
-    public List<ItemDTO> getItems() {
+    public List<ItemRequest> getItems() {
         return items;
     }
 
-    public void setItems(List<ItemDTO> items) {
+    public void setItems(List<ItemRequest> items) {
         this.items = items;
     }
 
